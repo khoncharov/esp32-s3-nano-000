@@ -2,24 +2,31 @@
 
 #define LED_PIN 48
 
+#define DELAY 1000 // ms
+
+bool led_state = false;
+
+uint32_t time_t0;
+uint32_t time_t1;
+
 void setup() {
   pinMode(LED_PIN, OUTPUT);
 
   Serial.begin(115200);
-  delay(1000);  // Дать USB‑CDC время подняться
-
-  Serial.println("ESP32-S3 Nano: LED + millis() test");
+  delay(1000);
 }
 
 void loop() {
-  static bool state = false;
+  time_t1 = millis();
 
-  // Переключаем LED
-  state = !state;
-  digitalWrite(LED_PIN, state);
+  if (time_t1 - time_t0 >= DELAY) {
+    time_t0 = time_t1;
 
-  // Печатаем время в миллисекундах
-  Serial.printf("Time: %lu ms\n", millis());
+    // Переключаем LED
+    led_state = !led_state;
+    digitalWrite(LED_PIN, led_state);
 
-  delay(1000);
+    // Печатаем время
+    Serial.printf("Time: %u s\n", millis()/1000);
+  }
 }

@@ -1,0 +1,5 @@
+; After creating or changing this file, Git might not update your current local files immediately.
+; To "refresh" them, run:
+;   git add --renormalize .
+
+* text=auto eol=lf
