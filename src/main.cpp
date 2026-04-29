@@ -22,11 +22,9 @@ void loop() {
   if (time_t1 - time_t0 >= DELAY) {
     time_t0 = time_t1;
 
-    // Переключаем LED
     led_state = !led_state;
     digitalWrite(LED_PIN, led_state);
 
-    // Печатаем время
     Serial.printf("Time: %u s\n", millis()/1000);
   }
 }
