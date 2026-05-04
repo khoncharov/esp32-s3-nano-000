@@ -25,6 +25,6 @@ void loop() {
     led_state = !led_state;
     digitalWrite(LED_PIN, led_state);
 
-    Serial.printf("Time: %u s\n", millis()/1000);
+    Serial.printf("Time: %u s\n", time_t1/1000);
   }
 }
